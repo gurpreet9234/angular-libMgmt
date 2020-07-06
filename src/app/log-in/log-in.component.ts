@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {first} from 'rxjs/operators';
-import {AuthenticationService} from '../services/authentication.service';
-import {AlertService} from '../services/alert.service';
+import {CommonService} from '../services/common.service';
 
 @Component({
   selector: 'app-log-in',
@@ -12,7 +10,6 @@ import {AlertService} from '../services/alert.service';
 })
 export class LogInComponent implements OnInit {
   loginForm: FormGroup;
-  loading = false;
   submitted = false;
   returnUrl: string;
 
@@ -20,14 +17,8 @@ export class LogInComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService,
-    private alertService: AlertService
-  ) {
-    // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
-  }
+    private commonService: CommonService,
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -36,7 +27,7 @@ export class LogInComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/register';
   }
 
   // convenience getter for easy access to form fields
@@ -46,22 +37,19 @@ export class LogInComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
 
-    this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        });
+    this.commonService.login(this.f.username.value, this.f.password.value).subscribe(
+      data => {
+        alert(data);
+        this.router.navigate([this.returnUrl]);
+      });
+  }
+
+  register(){
+    this.router.navigate([this.returnUrl]);
   }
 }
