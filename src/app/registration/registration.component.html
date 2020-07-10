@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container" style="margin-top: 30px">
+<div class="container" style="margin-top: 90px">
   <form name="form" (ngSubmit)="f.form.valid && signUp()" #f="ngForm" novalidate>
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -64,7 +64,9 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="signUp()">Sign in</button>
+    <button type="submit" class="btn btn-primary">Sign up</button>
+    &nbsp;
+    <button type="reset" class="btn btn-primary">Reset</button>
   </form>
 </div>
 <app-footer></app-footer>

@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div class="container" style="margin-top: 90px">
+  <h4>Books List</h4>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Publish</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let book of booksList">
+      <td>{{book.name}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.yearOfthePublish}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<app-footer></app-footer>

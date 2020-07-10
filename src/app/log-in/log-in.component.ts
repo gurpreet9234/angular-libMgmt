@@ -27,7 +27,7 @@ export class LogInComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/register';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
 
   // convenience getter for easy access to form fields
@@ -44,7 +44,6 @@ export class LogInComponent implements OnInit {
 
     this.commonService.login(this.f.username.value, this.f.password.value).subscribe(
       data => {
-        alert(data);
         this.router.navigate([this.returnUrl]);
       });
   }

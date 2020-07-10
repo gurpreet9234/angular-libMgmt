@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div class="container" style="margin-top: 90px">
+  <h4>Pending Request</h4>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Roll No</th>
+      <th>Firstname</th>
+      <th>Email</th>
+      <th>Mobile Number</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of studentsList">
+      <td>{{student.rollNumber}}</td>
+      <td>{{student.firstName + student.lastName}}</td>
+      <td>{{student.email}}</td>
+      <td>{{student.mobileNumber}}</td>
+      <td><button class="btn-primary" (click)="accept(student)">Accept</button> &nbsp; <button class="btn-danger" (click)="reject(student)">Reject</button></td>
+    </tr>
+    </tbody>
+  </table>
+  <h4>Accepted Students</h4>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Roll No</th>
+      <th>Firstname</th>
+      <th>Email</th>
+      <th>Mobile Number</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+</div>
+<app-footer></app-footer>
