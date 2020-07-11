@@ -44,6 +44,7 @@ export class LogInComponent implements OnInit {
 
     this.commonService.login(this.f.username.value, this.f.password.value).subscribe(
       data => {
+        alert(data);
         this.router.navigate([this.returnUrl]);
       });
   }

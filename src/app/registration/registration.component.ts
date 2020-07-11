@@ -18,7 +18,7 @@ export class RegistrationComponent implements OnInit {
 
   signUp(): void {
     alert(JSON.stringify(this.student));
-    this.commonService.addStudent(this.student).subscribe(data =>{
+    this.commonService.register(this.student).subscribe(data => {
       alert(data);
     });
   }

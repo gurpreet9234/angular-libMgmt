@@ -11,9 +11,13 @@ const API_URL = environment.baseUrl;
 })
 export class CommonService {
   private authUrl = '/login';
-  private addStudent_url = '/saveRegistration';
-  private getStudent_url = '/home';
-  private getBooks_url = '/getBookDetails';
+  private registrationUrl = '/saveRegistration';
+  private getStudentUrl = '/home';
+  private getBooksUrl = '/getBookDetails';
+  private addUrl = '/approve';
+  private rejectUrl = '/reject';
+  private registeredListrl = '/registeredUsers';
+  private credentialsUrl = '/getCredentials';
 
   constructor(private http: HttpClient) {
   }
@@ -25,16 +29,32 @@ export class CommonService {
       }));
   }
 
-  addStudent(student: Student) {
-    return this.http.post(`${API_URL + this.addStudent_url}`, student);
+  register(student: Student) {
+    return this.http.post(`${API_URL + this.registrationUrl}`, student);
   }
 
-  getStudent() {
-    return this.http.get(`${API_URL + this.getStudent_url}`);
+  getPendingStudents() {
+    return this.http.get(`${API_URL + this.getStudentUrl}`);
   }
 
   getAllBooks() {
-    return this.http.get(`${API_URL + this.getBooks_url}`);
+    return this.http.get(`${API_URL + this.getBooksUrl}`);
+  }
+
+  addStudent(student: Student) {
+    return this.http.post(`${API_URL + this.addUrl}`, student);
+  }
+
+  rejectStudent(student: Student) {
+    return this.http.post(`${API_URL + this.rejectUrl}`, student);
+  }
+
+  getApprovalList(){
+    return this.http.get(`${API_URL + this.registeredListrl}`);
+  }
+
+ getCredentials(){
+    return this.http.get(`${API_URL + this.credentialsUrl}`);
   }
 
 }
