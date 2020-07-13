@@ -18,16 +18,17 @@ export class LogInComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private commonService: CommonService,
-  ) {}
+  ) {
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/home';
   }
 
   // convenience getter for easy access to form fields
@@ -35,7 +36,7 @@ export class LogInComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
     // stop here if form is invalid
     if (this.loginForm.invalid) {
@@ -44,12 +45,12 @@ export class LogInComponent implements OnInit {
 
     this.commonService.login(this.f.username.value, this.f.password.value).subscribe(
       data => {
-        alert(data);
+        localStorage.setItem('username', this.f.username.value);
         this.router.navigate([this.returnUrl]);
       });
   }
 
-  register(){
+  register(): void {
     this.router.navigate([this.returnUrl]);
   }
 }

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonService} from '../services/common.service';
 import {Student} from '../model/student';
-import {dashCaseToCamelCase} from '@angular/compiler/src/util';
 
 // This lets me use jquery
 declare var $: any;
@@ -14,7 +13,7 @@ declare var $: any;
 export class StudentsComponent implements OnInit {
   pendingRequestList: Student[];
   registeredStudentsList: Student[];
-  credenialsList: any = {};
+  credentialsList: any = {};
   password: any;
 
   constructor(private commonService: CommonService) {
@@ -60,13 +59,14 @@ export class StudentsComponent implements OnInit {
   addCredentials(): void {
     this.commonService.getCredentials().subscribe(data => {
       // @ts-ignore
-      this.credenialsList = data;
-      console.log(this.credenialsList);
+      this.credentialsList = data;
+      console.log(this.credentialsList);
     });
   }
 
   getPassword(email): void {
-    this.password = this.credenialsList[email];
+    this.password = this.credentialsList[email];
+    alert(this.password);
     (<any> $('#myModal')).modal('show');
   }
 

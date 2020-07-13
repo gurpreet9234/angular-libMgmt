@@ -1,13 +1,13 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <ul class="navbar-nav col-md-11">
+  <ul class="navbar-nav col-md-8">
     <li class="nav-item">
       <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/books" routerLinkActive="active">Books</a>
     </li>
-    <li class="nav-item">
+    <li *ngIf="isAdmin" class="nav-item">
       <a class="nav-link" routerLink="/students" routerLinkActive="active">Students</a>
     </li>
     <li class="nav-item">
@@ -15,8 +15,8 @@
     </li>
 
   </ul>
-
-    <ul class="navbar-nav px-3">
+    <div *ngIf="!isAdmin" style="color: #b6df30" class="col-md-3">User - {{user}}</div>
+    <ul class="navbar-nav px-3 col-md-1">
       <li class="nav-item text-nowrap">
         <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logLout()">LogOut</button>
       </li>

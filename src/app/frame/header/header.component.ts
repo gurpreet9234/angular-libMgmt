@@ -7,13 +7,22 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  isAdmin: boolean;
+  user: any;
   constructor( private router: Router) { }
 
   ngOnInit(): void {
+    const username = localStorage.getItem('username');
+    if (username === 'admin'){
+      this.isAdmin = true;
+    }
+    else {
+      this.user = username;
+    }
   }
 
-  logLout() {
+  logLout(): void {
+    localStorage.removeItem('username');
     this.router.navigate(['/login']);
   }
 
