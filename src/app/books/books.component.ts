@@ -13,6 +13,7 @@ export class BooksComponent implements OnInit {
   selectedBookList: BookDetails[] = [];
 
   email: any;
+  isAdmin = true;
 
   constructor(private commonService: CommonService) {
   }
@@ -22,6 +23,7 @@ export class BooksComponent implements OnInit {
     const emailId = localStorage.getItem('username');
     if (emailId !== 'admin') {
       this.email = emailId;
+      this.isAdmin = false;
     }
 
   }

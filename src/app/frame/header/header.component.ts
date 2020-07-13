@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   isAdmin: boolean;
+  registrationHeader: boolean;
   user: any;
   constructor( private router: Router) { }
 
@@ -15,10 +16,15 @@ export class HeaderComponent implements OnInit {
     const username = localStorage.getItem('username');
     if (username === 'admin'){
       this.isAdmin = true;
+      this.user = username;
+    }
+    else if  (username === null) {
+    this.registrationHeader = true;
     }
     else {
       this.user = username;
     }
+
   }
 
   logLout(): void {

@@ -15,7 +15,8 @@
     </li>
 
   </ul>
-    <div *ngIf="!isAdmin" style="color: #b6df30" class="col-md-3">User - {{user}}</div>
+    <div *ngIf="!registrationHeader" style="color: #b6df30" class="col-md-3">User - {{user}}</div>
+    <div *ngIf="registrationHeader" style="color: #b6df30" class="col-md-3"></div>
     <ul class="navbar-nav px-3 col-md-1">
       <li class="nav-item text-nowrap">
         <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logLout()">LogOut</button>
