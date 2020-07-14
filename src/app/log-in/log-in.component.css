@@ -46,4 +46,10 @@
   background-size: cover;
 }
 
+.loginLogo{
+  width: 62%;
+  padding-left: 10%;
+  position: static;
+}
+
 
